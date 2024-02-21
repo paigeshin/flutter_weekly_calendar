@@ -26,7 +26,15 @@ class _MyHomePageState extends State<MyHomePage> {
     currentMonthList = currentMonthList.toSet().toList();
     scrollController =
         ScrollController(initialScrollOffset: 70.0 * currentDateTime.day);
+    scrollController.addListener(scrollListener);
     super.initState();
+  }
+
+  void scrollListener() {
+    if (scrollController.position.pixels ==
+        scrollController.position.maxScrollExtent * 0.75) {
+      debugPrint('Scroll Reached End!');
+    }
   }
 
   Widget backgroundView() {
